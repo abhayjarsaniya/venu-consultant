@@ -1,0 +1,30 @@
+export const clients = [
+  { name: "Indian Army", sector: "Defence" },
+  { name: "Indian Navy", sector: "Defence" },
+  { name: "Indian Air Force", sector: "Defence" },
+  { name: "Indian Coast Guard", sector: "Defence" },
+  { name: "Gujarat Water Supply & Sewerage Board", sector: "Government" },
+  { name: "Government of Gujarat", sector: "Government" },
+  { name: "Government of Odisha", sector: "Government" },
+  { name: "Karnataka Urban Water Supply & Drainage Board", sector: "Government" },
+  { name: "Government of Telangana", sector: "Government" },
+  { name: "Kolhapur Municipal Corporation", sector: "Government" },
+  { name: "Gujarat State Electricity Corporation Ltd.", sector: "Public Sector" },
+  { name: "Gujarat Industrial Development Corporation", sector: "Public Sector" },
+  { name: "Western Railway", sector: "Public Sector" },
+  { name: "Torrent Pharma", sector: "Pharmaceutical" },
+  { name: "Aditya Birla Group, Birla Copper", sector: "Industrial" },
+  { name: "HCCBPL", sector: "Beverages" },
+  { name: "APM Terminal", sector: "Ports & Logistics" },
+  { name: "CEIL", sector: "Engineering" },
+  { name: "OASIS", sector: "Industrial" },
+];
+
+export const projectCategories = [
+  { slug: "water-treatment", name: "Water Treatment Projects", count: "25+", blurb: "Conventional, packaged, UF and RO treatment plants across India." },
+  { slug: "sewage-treatment", name: "Sewage Treatment Projects", count: "20+", blurb: "ASP, SBR, MBBR and MBR sewage treatment plants from municipal to township scale." },
+  { slug: "industrial", name: "Industrial Projects", count: "150+", blurb: "Laminate, pharma, food, metallurgical, warehousing and substation projects." },
+  { slug: "high-rise", name: "High Rise Buildings", count: "40+", blurb: "Tall residential, commercial and mixed-use towers in Indian cities." },
+  { slug: "commercial", name: "Commercial Projects", count: "60+", blurb: "Offices, retail, hotels, hospitals and mixed-use developments." },
+  { slug: "infrastructure", name: "Infrastructure Projects", count: "50+", blurb: "Bulk water mains, distribution networks, drainage and bridges." },
+];

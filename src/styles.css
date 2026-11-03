@@ -1,0 +1,141 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+  --color-ink: var(--ink);
+  --color-bone: var(--bone);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.16 0.005 270);
+  --ink: oklch(0.16 0.005 270);
+  --bone: oklch(0.97 0.005 90);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.16 0.005 270);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.16 0.005 270);
+  --primary: oklch(0.16 0.005 270);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.96 0.005 90);
+  --secondary-foreground: oklch(0.16 0.005 270);
+  --muted: oklch(0.96 0.005 90);
+  --muted-foreground: oklch(0.45 0.01 270);
+  --accent: oklch(0.96 0.005 90);
+  --accent-foreground: oklch(0.16 0.005 270);
+  --gold: oklch(0.74 0.13 80);
+  --gold-foreground: oklch(0.16 0.005 270);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.9 0.005 270);
+  --input: oklch(0.9 0.005 270);
+  --ring: oklch(0.74 0.13 80);
+}
+
+.dark {
+  --background: oklch(0.12 0.005 270);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.16 0.005 270);
+  --card-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.98 0 0);
+  --primary-foreground: oklch(0.16 0.005 270);
+  --secondary: oklch(0.22 0.005 270);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.22 0.005 270);
+  --muted-foreground: oklch(0.7 0.01 270);
+  --accent: oklch(0.22 0.005 270);
+  --accent-foreground: oklch(0.98 0 0);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility container-wide {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+  max-width: 88rem;
+  @media (min-width: 1024px) { padding-inline: 3rem; }
+}
+
+@utility eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-gold);
+}
+
+@utility rule-gold {
+  position: relative;
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 2.5rem;
+    height: 1px;
+    background: var(--color-gold);
+    margin-right: 0.75rem;
+    vertical-align: middle;
+  }
+}
+
+@utility link-underline {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -2px;
+    width: 100%; height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.7, 0, 0.2, 1);
+  }
+  &:hover::after { transform: scaleX(1); transform-origin: left; }
+}
