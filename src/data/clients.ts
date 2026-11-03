@@ -21,10 +21,40 @@ export const clients = [
 ];
 
 export const projectCategories = [
-  { slug: "water-treatment", name: "Water Treatment Projects", count: "25+", blurb: "Conventional, packaged, UF and RO treatment plants across India." },
-  { slug: "sewage-treatment", name: "Sewage Treatment Projects", count: "20+", blurb: "ASP, SBR, MBBR and MBR sewage treatment plants from municipal to township scale." },
-  { slug: "industrial", name: "Industrial Projects", count: "150+", blurb: "Laminate, pharma, food, metallurgical, warehousing and substation projects." },
-  { slug: "high-rise", name: "High Rise Buildings", count: "40+", blurb: "Tall residential, commercial and mixed-use towers in Indian cities." },
-  { slug: "commercial", name: "Commercial Projects", count: "60+", blurb: "Offices, retail, hotels, hospitals and mixed-use developments." },
-  { slug: "infrastructure", name: "Infrastructure Projects", count: "50+", blurb: "Bulk water mains, distribution networks, drainage and bridges." },
+  {
+    slug: "water-treatment",
+    name: "Water Treatment Projects",
+    count: "25+",
+    blurb: "Conventional, packaged, UF and RO treatment plants across India.",
+  },
+  {
+    slug: "sewage-treatment",
+    name: "Sewage Treatment Projects",
+    count: "20+",
+    blurb: "ASP, SBR, MBBR and MBR sewage treatment plants from municipal to township scale.",
+  },
+  {
+    slug: "industrial",
+    name: "Industrial Projects",
+    count: "150+",
+    blurb: "Laminate, pharma, food, metallurgical, warehousing and substation projects.",
+  },
+  {
+    slug: "high-rise",
+    name: "High Rise Buildings",
+    count: "40+",
+    blurb: "Tall residential, commercial and mixed-use towers in Indian cities.",
+  },
+  {
+    slug: "commercial",
+    name: "Commercial Projects",
+    count: "60+",
+    blurb: "Offices, retail, hotels, hospitals and mixed-use developments.",
+  },
+  {
+    slug: "infrastructure",
+    name: "Infrastructure Projects",
+    count: "50+",
+    blurb: "Bulk water mains, distribution networks, drainage and bridges.",
+  },
 ];

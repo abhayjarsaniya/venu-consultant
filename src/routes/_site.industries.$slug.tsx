@@ -35,7 +35,11 @@ function IndustryDetail() {
         eyebrow="Industry"
         title={i.name}
         intro={i.description}
-        breadcrumbs={[{ label: "Home", to: "/" }, { label: "Industries", to: "/industries" }, { label: i.name }]}
+        breadcrumbs={[
+          { label: "Home", to: "/" },
+          { label: "Industries", to: "/industries" },
+          { label: i.name },
+        ]}
       />
 
       <section className="border-b border-border">
@@ -43,19 +47,29 @@ function IndustryDetail() {
           <div className="lg:col-span-7">
             <p className="eyebrow">Our Expertise</p>
             <ul className="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
-              {i.highlights.map((h) => <li key={h} className="rule-gold">{h}</li>)}
+              {i.highlights.map((h) => (
+                <li key={h} className="rule-gold">
+                  {h}
+                </li>
+              ))}
             </ul>
           </div>
           <aside className="lg:col-span-5">
             <div className="border border-border p-8">
               <p className="eyebrow">Related Services</p>
               {relatedServices.length === 0 ? (
-                <p className="mt-5 text-sm text-muted-foreground">All our service lines apply to this sector.</p>
+                <p className="mt-5 text-sm text-muted-foreground">
+                  All our service lines apply to this sector.
+                </p>
               ) : (
                 <ul className="mt-5 divide-y divide-border">
                   {relatedServices.map((s) => (
                     <li key={s.slug}>
-                      <Link to="/services/$slug" params={{ slug: s.slug }} className="flex items-center justify-between py-3 text-sm transition hover:text-gold">
+                      <Link
+                        to="/services/$slug"
+                        params={{ slug: s.slug }}
+                        className="flex items-center justify-between py-3 text-sm transition hover:text-gold"
+                      >
                         {s.title}
                         <span className="text-gold">→</span>
                       </Link>
@@ -73,7 +87,12 @@ function IndustryDetail() {
           <p className="eyebrow">Other Industries</p>
           <div className="mt-8 grid gap-px bg-border md:grid-cols-3 lg:grid-cols-6">
             {otherIndustries.map((o) => (
-              <Link key={o.slug} to="/industries/$slug" params={{ slug: o.slug }} className="bg-background p-5 text-sm transition hover:bg-foreground hover:text-background">
+              <Link
+                key={o.slug}
+                to="/industries/$slug"
+                params={{ slug: o.slug }}
+                className="bg-background p-5 text-sm transition hover:bg-foreground hover:text-background"
+              >
                 {o.name}
               </Link>
             ))}

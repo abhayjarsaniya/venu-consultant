@@ -8,7 +8,11 @@ export const Route = createFileRoute("/_site/careers")({
   head: () => ({
     meta: [
       { title: "Careers, Venu Consultants" },
-      { name: "description", content: "Join a multi-disciplinary engineering bench delivering nationwide projects from Ahmedabad. Open positions and culture." },
+      {
+        name: "description",
+        content:
+          "Join a multi-disciplinary engineering bench delivering nationwide projects from Ahmedabad. Open positions and culture.",
+      },
       { property: "og:url", content: "/careers" },
     ],
     links: [{ rel: "canonical", href: "/careers" }],
@@ -57,7 +61,9 @@ function Careers() {
               <p className="eyebrow">Culture & Benefits</p>
               <ul className="mt-5 space-y-3">
                 {benefits.map((x) => (
-                  <li key={x} className="rule-gold">{x}</li>
+                  <li key={x} className="rule-gold">
+                    {x}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -71,18 +77,26 @@ function Careers() {
             <SectionHeader eyebrow="Open Positions" title="We are hiring." />
             {openRoles.length === 0 ? (
               <p className="mt-8 text-center text-sm text-muted-foreground">
-                No active openings currently listed. Feel free to submit your CV below for future opportunities!
+                No active openings currently listed. Feel free to submit your CV below for future
+                opportunities!
               </p>
             ) : (
               <div className="mt-10 divide-y divide-border border-y border-border">
                 {openRoles.map((r) => (
-                  <div key={r.id || r.title} className="grid gap-4 py-6 lg:grid-cols-[1.5fr_1fr_2fr_auto] lg:items-center">
+                  <div
+                    key={r.id || r.title}
+                    className="grid gap-4 py-6 lg:grid-cols-[1.5fr_1fr_2fr_auto] lg:items-center"
+                  >
                     <div>
                       <h3 className="font-display text-xl">{r.title}</h3>
-                      <p className="mt-1 text-xs text-gold font-medium">{r.department || "Engineering"}</p>
+                      <p className="mt-1 text-xs text-gold font-medium">
+                        {r.department || "Engineering"}
+                      </p>
                     </div>
                     <div>
-                      <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">{r.type}</p>
+                      <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">
+                        {r.type}
+                      </p>
                       <p className="text-xs text-muted-foreground/80">{r.experience}</p>
                     </div>
                     <p className="text-sm text-muted-foreground">{r.brief}</p>
@@ -107,11 +121,17 @@ function Careers() {
       {vis.careersApplicationForm && (
         <section id="apply-form-section" className="border-b border-border">
           <div className="container-wide py-20">
-            <SectionHeader eyebrow="Apply" title="Send us your CV." intro="Interested in joining our team? Fill out the details below and we will get back to you." />
+            <SectionHeader
+              eyebrow="Apply"
+              title="Send us your CV."
+              intro="Interested in joining our team? Fill out the details below and we will get back to you."
+            />
             {formSubmitted ? (
               <div className="mt-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-6 text-center text-emerald-800">
                 <p className="font-display text-lg font-bold">Application Received!</p>
-                <p className="mt-1 text-xs">Thank you for your interest. Our HR team will review your profile shortly.</p>
+                <p className="mt-1 text-xs">
+                  Thank you for your interest. Our HR team will review your profile shortly.
+                </p>
               </div>
             ) : (
               <form
@@ -124,12 +144,27 @@ function Careers() {
                 <Field label="Full Name" name="name" required />
                 <Field label="Email Address" name="email" type="email" required />
                 <Field label="Phone Number" name="phone" required />
-                <Field label="Position of Interest" name="position" value={appliedRole} onChange={(e) => setAppliedRole(e.target.value)} required />
+                <Field
+                  label="Position of Interest"
+                  name="position"
+                  value={appliedRole}
+                  onChange={(e) => setAppliedRole(e.target.value)}
+                  required
+                />
                 <div className="lg:col-span-2">
                   <label className="eyebrow block">Cover Note / Experience Summary</label>
-                  <textarea name="message" rows={5} className="mt-3 w-full border border-border bg-background p-4 outline-none focus:border-gold text-sm" placeholder="Tell us about your educational background, key software skills, and prior project experience." required />
+                  <textarea
+                    name="message"
+                    rows={5}
+                    className="mt-3 w-full border border-border bg-background p-4 outline-none focus:border-gold text-sm"
+                    placeholder="Tell us about your educational background, key software skills, and prior project experience."
+                    required
+                  />
                 </div>
-                <button type="submit" className="justify-self-start bg-foreground px-7 py-4 text-sm font-semibold text-background hover:bg-foreground/90 transition cursor-pointer">
+                <button
+                  type="submit"
+                  className="justify-self-start bg-foreground px-7 py-4 text-sm font-semibold text-background hover:bg-foreground/90 transition cursor-pointer"
+                >
                   Submit Application
                 </button>
               </form>
@@ -138,12 +173,30 @@ function Careers() {
         </section>
       )}
 
-      <CTASection eyebrow="Get in Touch" title="Questions about careers?" ctaLabel="Email Careers" />
+      <CTASection
+        eyebrow="Get in Touch"
+        title="Questions about careers?"
+        ctaLabel="Email Careers"
+      />
     </>
   );
 }
 
-function Field({ label, name, type = "text", value, onChange, required }: { label: string; name: string; type?: string; value?: string; onChange?: (e: any) => void; required?: boolean }) {
+function Field({
+  label,
+  name,
+  type = "text",
+  value,
+  onChange,
+  required,
+}: {
+  label: string;
+  name: string;
+  type?: string;
+  value?: string;
+  onChange?: (e: any) => void;
+  required?: boolean;
+}) {
   return (
     <div>
       <label className="eyebrow block">{label}</label>

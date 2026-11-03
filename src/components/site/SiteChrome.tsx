@@ -12,9 +12,13 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70">
       <div className="container-wide flex h-20 items-center justify-between">
         <Link to="/" className="group flex items-baseline gap-2" onClick={() => setOpen(false)}>
-          <span className="font-display text-2xl tracking-tight">{company.short.split(" ")[0] || "Venu"}</span>
+          <span className="font-display text-2xl tracking-tight">
+            {company.short.split(" ")[0] || "Venu"}
+          </span>
           <span className="h-1.5 w-1.5 rounded-full bg-gold transition-transform group-hover:scale-150" />
-          <span className="text-xs uppercase tracking-[0.22em] text-muted-foreground">{company.short.split(" ").slice(1).join(" ") || "Consultants"}</span>
+          <span className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+            {company.short.split(" ").slice(1).join(" ") || "Consultants"}
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">
@@ -64,7 +68,11 @@ export function SiteHeader() {
                 {item.label}
               </Link>
             ))}
-            <Link to="/contact" onClick={() => setOpen(false)} className="mt-4 bg-foreground px-5 py-3 text-center text-sm text-background">
+            <Link
+              to="/contact"
+              onClick={() => setOpen(false)}
+              className="mt-4 bg-foreground px-5 py-3 text-center text-sm text-background"
+            >
               Get in Touch
             </Link>
           </nav>
@@ -87,35 +95,49 @@ export function SiteFooter() {
             <span className="h-1.5 w-1.5 rounded-full bg-gold" />
           </div>
           <p className="mt-5 max-w-sm text-sm text-background/65">
-            {company.tagline}. An Ahmedabad-based engineering consultancy delivering architectural, structural, environmental, water and industrial engineering excellence across India.
+            {company.tagline}. An Ahmedabad-based engineering consultancy delivering architectural,
+            structural, environmental, water and industrial engineering excellence across India.
           </p>
-          <p className="mt-8 text-xs uppercase tracking-[0.22em] text-background/50">{company.city}</p>
+          <p className="mt-8 text-xs uppercase tracking-[0.22em] text-background/50">
+            {company.city}
+          </p>
         </div>
 
-        <FooterCol title="Explore" links={[
-          { l: "About", to: "/about" },
-          { l: "Services", to: "/services" },
-          { l: "Industries", to: "/industries" },
-          { l: "Projects", to: "/projects" },
-          { l: "Technology", to: "/technology" },
-        ]} />
-        <FooterCol title="Company" links={[
-          { l: "Leadership", to: "/about/leadership" },
-          { l: "Our Team", to: "/about/team" },
-          { l: "Why Choose Us", to: "/about/why-choose-us" },
-          { l: "Library", to: "/about/library" },
-          { l: "Careers", to: "/careers" },
-        ]} />
-        <FooterCol title="Connect" links={[
-          { l: "Clients", to: "/clients" },
-          { l: "Blog", to: "/blog" },
-          { l: "Contact", to: "/contact" },
-          { l: "Admin CMS", to: "/admin" },
-        ]} />
+        <FooterCol
+          title="Explore"
+          links={[
+            { l: "About", to: "/about" },
+            { l: "Services", to: "/services" },
+            { l: "Industries", to: "/industries" },
+            { l: "Projects", to: "/projects" },
+            { l: "Technology", to: "/technology" },
+          ]}
+        />
+        <FooterCol
+          title="Company"
+          links={[
+            { l: "Leadership", to: "/about/leadership" },
+            { l: "Our Team", to: "/about/team" },
+            { l: "Why Choose Us", to: "/about/why-choose-us" },
+            { l: "Library", to: "/about/library" },
+            { l: "Careers", to: "/careers" },
+          ]}
+        />
+        <FooterCol
+          title="Connect"
+          links={[
+            { l: "Clients", to: "/clients" },
+            { l: "Blog", to: "/blog" },
+            { l: "Contact", to: "/contact" },
+            { l: "Admin CMS", to: "/admin" },
+          ]}
+        />
       </div>
       <div className="border-t border-background/10">
         <div className="container-wide flex flex-col items-start justify-between gap-2 py-6 text-xs text-background/55 md:flex-row md:items-center">
-          <span>© {new Date().getFullYear()} {company.name}. All rights reserved.</span>
+          <span>
+            © {new Date().getFullYear()} {company.name}. All rights reserved.
+          </span>
           <div className="flex items-center gap-4">
             <span>{company.city}</span>
             <span className="text-background/20">|</span>

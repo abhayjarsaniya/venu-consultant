@@ -8,7 +8,11 @@ export const Route = createFileRoute("/_site/blog")({
   head: () => ({
     meta: [
       { title: "Blog, Engineering Insights | Venu Consultants" },
-      { name: "description", content: "Insights on structural engineering, water treatment, industrial design, construction management and sustainability." },
+      {
+        name: "description",
+        content:
+          "Insights on structural engineering, water treatment, industrial design, construction management and sustainability.",
+      },
       { property: "og:url", content: "/blog" },
     ],
     links: [{ rel: "canonical", href: "/blog" }],
@@ -88,14 +92,21 @@ function Blog() {
                 {filteredPosts.map((p) => {
                   const isExpanded = expandedPostId === (p.id || p.title);
                   return (
-                    <article key={p.id || p.title} className="bg-background p-8 flex flex-col justify-between">
+                    <article
+                      key={p.id || p.title}
+                      className="bg-background p-8 flex flex-col justify-between"
+                    >
                       <div>
                         <div className="flex items-center justify-between">
                           <p className="eyebrow">{p.cat}</p>
-                          <span className="text-[11px] text-muted-foreground">{p.readTime || "4 min read"}</span>
+                          <span className="text-[11px] text-muted-foreground">
+                            {p.readTime || "4 min read"}
+                          </span>
                         </div>
                         <h3 className="mt-5 font-display text-2xl leading-tight">{p.title}</h3>
-                        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.excerpt}</p>
+                        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                          {p.excerpt}
+                        </p>
                         {isExpanded && p.content && (
                           <div className="mt-4 pt-4 border-t border-border text-sm leading-relaxed text-foreground/80">
                             {p.content}
@@ -103,9 +114,11 @@ function Blog() {
                         )}
                       </div>
                       <div className="mt-8 flex items-center justify-between">
-                        <span className="text-xs text-muted-foreground">{p.author || "Venu Consultants"}</span>
+                        <span className="text-xs text-muted-foreground">
+                          {p.author || "Venu Consultants"}
+                        </span>
                         <button
-                          onClick={() => setExpandedPostId(isExpanded ? null : (p.id || p.title))}
+                          onClick={() => setExpandedPostId(isExpanded ? null : p.id || p.title)}
                           className="text-xs uppercase tracking-[0.18em] text-gold hover:underline cursor-pointer font-medium"
                         >
                           {isExpanded ? "Close ↑" : "Read full article →"}

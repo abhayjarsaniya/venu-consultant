@@ -34,7 +34,13 @@ export function PageHero({
             <nav className="mb-10 text-xs uppercase tracking-[0.18em] text-background/60">
               {breadcrumbs.map((b, i) => (
                 <span key={i}>
-                  {b.to ? <Link to={b.to} className="hover:text-background">{b.label}</Link> : <span className="text-background">{b.label}</span>}
+                  {b.to ? (
+                    <Link to={b.to} className="hover:text-background">
+                      {b.label}
+                    </Link>
+                  ) : (
+                    <span className="text-background">{b.label}</span>
+                  )}
                   {i < breadcrumbs.length - 1 && <span className="mx-2 text-gold">/</span>}
                 </span>
               ))}
@@ -45,9 +51,7 @@ export function PageHero({
             {title}
           </h1>
           {intro && (
-            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-background/80">
-              {intro}
-            </p>
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-background/80">{intro}</p>
           )}
         </div>
       </section>
@@ -60,7 +64,13 @@ export function PageHero({
           <nav className="mb-10 text-xs uppercase tracking-[0.18em] text-muted-foreground">
             {breadcrumbs.map((b, i) => (
               <span key={i}>
-                {b.to ? <Link to={b.to} className="hover:text-foreground">{b.label}</Link> : <span className="text-foreground">{b.label}</span>}
+                {b.to ? (
+                  <Link to={b.to} className="hover:text-foreground">
+                    {b.label}
+                  </Link>
+                ) : (
+                  <span className="text-foreground">{b.label}</span>
+                )}
                 {i < breadcrumbs.length - 1 && <span className="mx-2 text-gold">/</span>}
               </span>
             ))}
@@ -71,7 +81,9 @@ export function PageHero({
           {title}
         </h1>
         {intro && (
-          <p className={`mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground ${align === "center" ? "mx-auto" : ""}`}>
+          <p
+            className={`mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground ${align === "center" ? "mx-auto" : ""}`}
+          >
             {intro}
           </p>
         )}
@@ -87,8 +99,9 @@ export function CTASection({
   ctaLabel = "Discuss Your Project",
 }: {
   eyebrow?: string;
-  title?: string;
+  title?: ReactNode;
   body?: string;
+  intro?: string;
   ctaLabel?: string;
 }) {
   return (
@@ -109,7 +122,10 @@ export function CTASection({
             {ctaLabel}
             <span className="transition-transform group-hover:translate-x-1">→</span>
           </Link>
-          <Link to="/services" className="text-sm text-background/60 transition hover:text-background">
+          <Link
+            to="/services"
+            className="text-sm text-background/60 transition hover:text-background"
+          >
             Or explore our services →
           </Link>
         </div>
@@ -118,11 +134,23 @@ export function CTASection({
   );
 }
 
-export function SectionHeader({ eyebrow, title, intro, align = "left" }: { eyebrow?: string; title: ReactNode; intro?: ReactNode; align?: "left" | "center" }) {
+export function SectionHeader({
+  eyebrow,
+  title,
+  intro,
+  align = "left",
+}: {
+  eyebrow?: string;
+  title: ReactNode;
+  intro?: ReactNode;
+  align?: "left" | "center";
+}) {
   return (
     <div className={`max-w-3xl ${align === "center" ? "mx-auto text-center" : ""}`}>
       {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-      <h2 className="mt-4 font-display text-[clamp(1.85rem,3.5vw,3rem)] leading-[1.08] tracking-tight">{title}</h2>
+      <h2 className="mt-4 font-display text-[clamp(1.85rem,3.5vw,3rem)] leading-[1.08] tracking-tight">
+        {title}
+      </h2>
       {intro && <p className="mt-5 text-lg text-muted-foreground">{intro}</p>}
     </div>
   );

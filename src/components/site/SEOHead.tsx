@@ -25,12 +25,24 @@ export function SEOHead({
 
   const configuredSEO: Partial<PageSEO> = (pageKey && content.seo[pageKey]) || {};
   const title = overrideSEO?.title || configuredSEO.title || fallbackTitle || content.company.name;
-  const description = overrideSEO?.description || configuredSEO.description || fallbackDescription || content.company.tagline;
-  const keywords = overrideSEO?.keywords || configuredSEO.keywords || fallbackKeywords || "engineering consultancy, ahmedabad";
+  const description =
+    overrideSEO?.description ||
+    configuredSEO.description ||
+    fallbackDescription ||
+    content.company.tagline;
+  const keywords =
+    overrideSEO?.keywords ||
+    configuredSEO.keywords ||
+    fallbackKeywords ||
+    "engineering consultancy, ahmedabad";
   const ogTitle = overrideSEO?.ogTitle || configuredSEO.ogTitle || title;
   const ogDescription = overrideSEO?.ogDescription || configuredSEO.ogDescription || description;
   const robots = overrideSEO?.robots || configuredSEO.robots || "index, follow";
-  const canonical = overrideSEO?.canonical || configuredSEO.canonical || canonicalPath || (typeof window !== "undefined" ? window.location.pathname : "/");
+  const canonical =
+    overrideSEO?.canonical ||
+    configuredSEO.canonical ||
+    canonicalPath ||
+    (typeof window !== "undefined" ? window.location.pathname : "/");
 
   useEffect(() => {
     if (typeof document === "undefined") return;
@@ -87,7 +99,17 @@ export function SEOHead({
       }
       scriptEl.textContent = JSON.stringify(jsonLd);
     }
-  }, [title, description, keywords, ogTitle, ogDescription, robots, canonical, jsonLd, content.company.name]);
+  }, [
+    title,
+    description,
+    keywords,
+    ogTitle,
+    ogDescription,
+    robots,
+    canonical,
+    jsonLd,
+    content.company.name,
+  ]);
 
   return null;
 }

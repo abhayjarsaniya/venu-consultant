@@ -9,7 +9,11 @@ export const Route = createFileRoute("/_site/about/")({
   head: () => ({
     meta: [
       { title: "About Venu Consultants, Company Overview" },
-      { name: "description", content: "Learn about Venu Consultants, an Ahmedabad-based engineering consultancy firm delivering nationwide projects since 2006." },
+      {
+        name: "description",
+        content:
+          "Learn about Venu Consultants, an Ahmedabad-based engineering consultancy firm delivering nationwide projects since 2006.",
+      },
       { property: "og:title", content: "About, Venu Consultants" },
       { property: "og:url", content: "/about" },
     ],
@@ -20,7 +24,10 @@ export const Route = createFileRoute("/_site/about/")({
 
 const values = [
   { t: "Excellence", d: "Uncompromising technical and craft standards on every drawing we issue." },
-  { t: "Innovation", d: "Practical, inventive solutions that meet the client brief and the site reality." },
+  {
+    t: "Innovation",
+    d: "Practical, inventive solutions that meet the client brief and the site reality.",
+  },
   { t: "Responsibility", d: "Engineers are accountable, professionally, technically and morally." },
   { t: "Quality", d: "Independent cross-checking and a controlled documentation system." },
   { t: "Integrity", d: "We say what we will deliver and we deliver what we say." },
@@ -57,7 +64,14 @@ function AboutIndex() {
             ))}
           </div>
           <div>
-            <img src={teamImg} alt="Engineers reviewing drawings" loading="lazy" width={1600} height={1100} className="aspect-[4/3] w-full object-cover" />
+            <img
+              src={teamImg}
+              alt="Engineers reviewing drawings"
+              loading="lazy"
+              width={1600}
+              height={1100}
+              className="aspect-[4/3] w-full object-cover"
+            />
           </div>
         </div>
       </section>
@@ -68,7 +82,9 @@ function AboutIndex() {
             {statsList.map((s) => (
               <div key={s.label} className="bg-background p-8">
                 <p className="font-display text-4xl">{s.value}</p>
-                <p className="mt-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">{s.label}</p>
+                <p className="mt-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                  {s.label}
+                </p>
               </div>
             ))}
           </div>

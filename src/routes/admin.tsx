@@ -8,7 +8,7 @@ import {
   setAdminPin,
 } from "@/lib/contentStore";
 import { getStoredFirebaseConfig, saveStoredFirebaseConfig } from "@/lib/firebase";
-import type { CareerRole, BlogPost, Service, Industry } from "@/lib/defaultSiteContent";
+import type { CareerRole, BlogPost, Service, Industry, Member } from "@/lib/defaultSiteContent";
 import {
   Shield,
   Key,
@@ -43,17 +43,31 @@ export const Route = createFileRoute("/admin")({
 });
 
 export function AdminPage() {
-  const { content, updateContent, updateSEO, resetDefaults, syncToCloud, syncFromCloud } = useSiteContent();
+  const { content, updateContent, updateSEO, resetDefaults, syncToCloud, syncFromCloud } =
+    useSiteContent();
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [pinInput, setPinInput] = useState("");
   const [pinError, setPinError] = useState("");
   const [activeTab, setActiveTab] = useState<
-    "dashboard" | "pages" | "visibility" | "careers" | "blog" | "services" | "seo" | "company" | "cloud" | "git" | "security"
+    | "dashboard"
+    | "pages"
+    | "visibility"
+    | "careers"
+    | "blog"
+    | "services"
+    | "seo"
+    | "company"
+    | "cloud"
+    | "git"
+    | "security"
   >("dashboard");
   const [selectedPage, setSelectedPage] = useState<string>("home");
   const [selectedSEOPage, setSelectedSEOPage] = useState<string>("home");
-  const [toastMessage, setToastMessage] = useState<{ text: string; type: "success" | "error" | "info" } | null>(null);
+  const [toastMessage, setToastMessage] = useState<{
+    text: string;
+    type: "success" | "error" | "info";
+  } | null>(null);
 
   // New PIN state
   const [newPin, setNewPin] = useState("");
@@ -122,10 +136,14 @@ export function AdminPage() {
   };
 
   const handleExportJSON = () => {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(content, null, 2));
+    const dataStr =
+      "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(content, null, 2));
     const downloadAnchor = document.createElement("a");
     downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", `venu-consultants-content-${new Date().toISOString().slice(0, 10)}.json`);
+    downloadAnchor.setAttribute(
+      "download",
+      `venu-consultants-content-${new Date().toISOString().slice(0, 10)}.json`,
+    );
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
@@ -277,7 +295,8 @@ export function AdminPage() {
               Administrative Control Panel
             </p>
             <p className="mt-3 text-xs text-stone-400">
-              Manage website sections, hide/show modules, post careers, publish blogs, and optimize crawler keywords.
+              Manage website sections, hide/show modules, post careers, publish blogs, and optimize
+              crawler keywords.
             </p>
           </div>
 
@@ -365,8 +384,8 @@ export function AdminPage() {
             toastMessage.type === "success"
               ? "bg-emerald-600 text-white"
               : toastMessage.type === "error"
-              ? "bg-rose-600 text-white"
-              : "bg-amber-600 text-white"
+                ? "bg-rose-600 text-white"
+                : "bg-amber-600 text-white"
           }`}
         >
           {toastMessage.type === "success" ? (
@@ -385,7 +404,9 @@ export function AdminPage() {
             <Link to="/" target="_blank" className="flex items-center gap-2 group">
               <span className="font-display text-xl font-bold text-white tracking-tight">Venu</span>
               <span className="h-2 w-2 rounded-full bg-amber-400" />
-              <span className="text-[11px] uppercase tracking-widest text-stone-400 font-medium">CMS Admin</span>
+              <span className="text-[11px] uppercase tracking-widest text-stone-400 font-medium">
+                CMS Admin
+              </span>
             </Link>
             <span className="hidden sm:inline-block rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[11px] text-emerald-400 border border-emerald-500/20 font-medium">
               Firebase: Connected
@@ -466,7 +487,9 @@ export function AdminPage() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <div className="rounded-xl border border-stone-800 bg-stone-900/60 p-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs uppercase tracking-wider text-stone-400 font-medium">Pages Managed</span>
+                  <span className="text-xs uppercase tracking-wider text-stone-400 font-medium">
+                    Pages Managed
+                  </span>
                   <FileText className="h-5 w-5 text-amber-400" />
                 </div>
                 <p className="mt-3 text-3xl font-bold text-white">17</p>
@@ -475,7 +498,9 @@ export function AdminPage() {
 
               <div className="rounded-xl border border-stone-800 bg-stone-900/60 p-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs uppercase tracking-wider text-stone-400 font-medium">Active Job Openings</span>
+                  <span className="text-xs uppercase tracking-wider text-stone-400 font-medium">
+                    Active Job Openings
+                  </span>
                   <Briefcase className="h-5 w-5 text-emerald-400" />
                 </div>
                 <p className="mt-3 text-3xl font-bold text-white">
@@ -486,7 +511,9 @@ export function AdminPage() {
 
               <div className="rounded-xl border border-stone-800 bg-stone-900/60 p-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs uppercase tracking-wider text-stone-400 font-medium">Published Articles</span>
+                  <span className="text-xs uppercase tracking-wider text-stone-400 font-medium">
+                    Published Articles
+                  </span>
                   <BookOpen className="h-5 w-5 text-sky-400" />
                 </div>
                 <p className="mt-3 text-3xl font-bold text-white">
@@ -497,10 +524,14 @@ export function AdminPage() {
 
               <div className="rounded-xl border border-stone-800 bg-stone-900/60 p-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs uppercase tracking-wider text-stone-400 font-medium">Firebase & Git</span>
+                  <span className="text-xs uppercase tracking-wider text-stone-400 font-medium">
+                    Firebase & Git
+                  </span>
                   <Cloud className="h-5 w-5 text-purple-400" />
                 </div>
-                <p className="mt-3 text-sm font-semibold text-emerald-400 font-mono">venu-consultants-web</p>
+                <p className="mt-3 text-sm font-semibold text-emerald-400 font-mono">
+                  venu-consultants-web
+                </p>
                 <p className="mt-1 text-xs text-stone-400">Ready for Vercel & Firebase</p>
               </div>
             </div>
@@ -513,7 +544,8 @@ export function AdminPage() {
                   Management Center
                 </h2>
                 <p className="mt-1 text-xs text-stone-400">
-                  Select any tool below to update text, post job ads, publish articles, or hide/unhide sections.
+                  Select any tool below to update text, post job ads, publish articles, or
+                  hide/unhide sections.
                 </p>
 
                 <div className="mt-5 grid gap-3 sm:grid-cols-2">
@@ -524,7 +556,9 @@ export function AdminPage() {
                     <Eye className="h-5 w-5 text-amber-400 shrink-0 mt-0.5" />
                     <div>
                       <p className="text-sm font-semibold text-white">Hide / Unhide Sections</p>
-                      <p className="text-xs text-stone-400">Toggle any block on/off on your website</p>
+                      <p className="text-xs text-stone-400">
+                        Toggle any block on/off on your website
+                      </p>
                     </div>
                   </button>
 
@@ -546,7 +580,9 @@ export function AdminPage() {
                     <BookOpen className="h-5 w-5 text-sky-400 shrink-0 mt-0.5" />
                     <div>
                       <p className="text-sm font-semibold text-white">Blog & Publications</p>
-                      <p className="text-xs text-stone-400">Create new technical posts & case studies</p>
+                      <p className="text-xs text-stone-400">
+                        Create new technical posts & case studies
+                      </p>
                     </div>
                   </button>
 
@@ -557,7 +593,9 @@ export function AdminPage() {
                     <GitBranch className="h-5 w-5 text-purple-400 shrink-0 mt-0.5" />
                     <div>
                       <p className="text-sm font-semibold text-white">GitHub & Vercel Connect</p>
-                      <p className="text-xs text-stone-400">Push to new GitHub repo & deploy to Vercel</p>
+                      <p className="text-xs text-stone-400">
+                        Push to new GitHub repo & deploy to Vercel
+                      </p>
                     </div>
                   </button>
                 </div>
@@ -584,7 +622,12 @@ export function AdminPage() {
                   <label className="w-full flex items-center justify-center gap-2 rounded-lg border border-stone-700 bg-stone-800 px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-stone-700 cursor-pointer">
                     <Upload className="h-4 w-4 text-emerald-400" />
                     <span>Import Content from JSON</span>
-                    <input type="file" accept=".json" onChange={handleImportJSON} className="hidden" />
+                    <input
+                      type="file"
+                      accept=".json"
+                      onChange={handleImportJSON}
+                      className="hidden"
+                    />
                   </label>
 
                   <button
@@ -614,14 +657,17 @@ export function AdminPage() {
                 Section Visibility Control (Hide / Show Any Section)
               </h2>
               <p className="mt-1 text-xs text-stone-400">
-                Turn any section on or off on your live website. When hidden, the layout adapts seamlessly without breaking design or responsiveness.
+                Turn any section on or off on your live website. When hidden, the layout adapts
+                seamlessly without breaking design or responsiveness.
               </p>
             </div>
 
             <div className="grid gap-6 md:grid-cols-2">
               {/* Home Page Sections */}
               <div className="rounded-xl border border-stone-800 bg-stone-900/80 p-5 space-y-4">
-                <h3 className="text-xs font-bold text-amber-400 uppercase tracking-wider">Home Page Sections</h3>
+                <h3 className="text-xs font-bold text-amber-400 uppercase tracking-wider">
+                  Home Page Sections
+                </h3>
                 {[
                   { key: "homeHero", label: "Hero Banner (Top Headline & CTA)" },
                   { key: "homeStats", label: "Key Statistics Counter (18+ Years, etc.)" },
@@ -635,7 +681,10 @@ export function AdminPage() {
                 ].map((item) => {
                   const isVisible = (vis as any)[item.key] !== false;
                   return (
-                    <div key={item.key} className="flex items-center justify-between py-2 border-b border-stone-800/60 last:border-0">
+                    <div
+                      key={item.key}
+                      className="flex items-center justify-between py-2 border-b border-stone-800/60 last:border-0"
+                    >
                       <span className="text-xs text-stone-200">{item.label}</span>
                       <button
                         onClick={() => toggleSection(item.key as any)}
@@ -655,7 +704,9 @@ export function AdminPage() {
 
               {/* Other Pages Sections */}
               <div className="rounded-xl border border-stone-800 bg-stone-900/80 p-5 space-y-4">
-                <h3 className="text-xs font-bold text-amber-400 uppercase tracking-wider">Inner Pages Sections</h3>
+                <h3 className="text-xs font-bold text-amber-400 uppercase tracking-wider">
+                  Inner Pages Sections
+                </h3>
                 {[
                   { key: "careersCulture", label: "Careers — Life at Venu & Benefits" },
                   { key: "careersOpenings", label: "Careers — Open Positions List" },
@@ -669,7 +720,10 @@ export function AdminPage() {
                 ].map((item) => {
                   const isVisible = (vis as any)[item.key] !== false;
                   return (
-                    <div key={item.key} className="flex items-center justify-between py-2 border-b border-stone-800/60 last:border-0">
+                    <div
+                      key={item.key}
+                      className="flex items-center justify-between py-2 border-b border-stone-800/60 last:border-0"
+                    >
                       <span className="text-xs text-stone-200">{item.label}</span>
                       <button
                         onClick={() => toggleSection(item.key as any)}
@@ -818,7 +872,9 @@ export function AdminPage() {
                         <input
                           type="text"
                           value={careerForm.department}
-                          onChange={(e) => setCareerForm({ ...careerForm, department: e.target.value })}
+                          onChange={(e) =>
+                            setCareerForm({ ...careerForm, department: e.target.value })
+                          }
                           placeholder="e.g. Structural Engineering"
                           className="mt-1 w-full rounded border border-stone-800 bg-stone-900 px-3 py-2 text-white"
                         />
@@ -837,11 +893,15 @@ export function AdminPage() {
 
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className="block font-medium text-stone-400">Required Experience</label>
+                        <label className="block font-medium text-stone-400">
+                          Required Experience
+                        </label>
                         <input
                           type="text"
                           value={careerForm.experience}
-                          onChange={(e) => setCareerForm({ ...careerForm, experience: e.target.value })}
+                          onChange={(e) =>
+                            setCareerForm({ ...careerForm, experience: e.target.value })
+                          }
                           placeholder="e.g. 5+ years"
                           className="mt-1 w-full rounded border border-stone-800 bg-stone-900 px-3 py-2 text-white"
                         />
@@ -851,7 +911,9 @@ export function AdminPage() {
                         <input
                           type="text"
                           value={careerForm.location}
-                          onChange={(e) => setCareerForm({ ...careerForm, location: e.target.value })}
+                          onChange={(e) =>
+                            setCareerForm({ ...careerForm, location: e.target.value })
+                          }
                           placeholder="e.g. Ahmedabad, Gujarat"
                           className="mt-1 w-full rounded border border-stone-800 bg-stone-900 px-3 py-2 text-white"
                         />
@@ -859,7 +921,9 @@ export function AdminPage() {
                     </div>
 
                     <div>
-                      <label className="block font-medium text-stone-400">Job Brief / Overview</label>
+                      <label className="block font-medium text-stone-400">
+                        Job Brief / Overview
+                      </label>
                       <textarea
                         rows={3}
                         value={careerForm.brief}
@@ -877,7 +941,10 @@ export function AdminPage() {
                         onChange={(e) => setCareerForm({ ...careerForm, active: e.target.checked })}
                         className="h-4 w-4 rounded border-stone-800 bg-stone-900 text-amber-500"
                       />
-                      <label htmlFor="activeCheck" className="text-stone-300 font-medium cursor-pointer">
+                      <label
+                        htmlFor="activeCheck"
+                        className="text-stone-300 font-medium cursor-pointer"
+                      >
                         Active & Published on Website
                       </label>
                     </div>
@@ -1028,7 +1095,9 @@ export function AdminPage() {
                           className="mt-1 w-full rounded border border-stone-800 bg-stone-900 px-3 py-2 text-white"
                         >
                           {(content.blog.categories || []).map((c) => (
-                            <option key={c} value={c}>{c}</option>
+                            <option key={c} value={c}>
+                              {c}
+                            </option>
                           ))}
                         </select>
                       </div>
@@ -1079,7 +1148,9 @@ export function AdminPage() {
                     </div>
 
                     <div>
-                      <label className="block font-medium text-stone-400">Full Article Content</label>
+                      <label className="block font-medium text-stone-400">
+                        Full Article Content
+                      </label>
                       <textarea
                         rows={6}
                         value={blogForm.content || ""}
@@ -1120,7 +1191,9 @@ export function AdminPage() {
                 Connect with GitHub & Push to Vercel
               </h2>
               <p className="mt-1 text-xs text-stone-400">
-                Your repository has been initialized locally with branch <code className="text-amber-400">main</code>. Follow the 2-step guide below to push to your GitHub account and import into Vercel.
+                Your repository has been initialized locally with branch{" "}
+                <code className="text-amber-400">main</code>. Follow the 2-step guide below to push
+                to your GitHub account and import into Vercel.
               </p>
             </div>
 
@@ -1130,10 +1203,23 @@ export function AdminPage() {
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-purple-500/20 text-purple-400 font-bold text-xs">
                   1
                 </span>
-                <h3 className="font-display text-sm font-bold text-white">Create a New GitHub Repo & Push</h3>
+                <h3 className="font-display text-sm font-bold text-white">
+                  Create a New GitHub Repo & Push
+                </h3>
               </div>
               <p className="text-xs text-stone-300">
-                1. Go to <a href="https://github.com/new" target="_blank" rel="noreferrer" className="text-amber-400 hover:underline">github.com/new</a> and create a fresh new repository (e.g. <code className="text-amber-300">venu-consultants-web</code>). Do <strong>not</strong> initialize with README.
+                1. Go to{" "}
+                <a
+                  href="https://github.com/new"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-amber-400 hover:underline"
+                >
+                  github.com/new
+                </a>{" "}
+                and create a fresh new repository (e.g.{" "}
+                <code className="text-amber-300">venu-consultants-web</code>). Do{" "}
+                <strong>not</strong> initialize with README.
               </p>
               <p className="text-xs text-stone-300">
                 2. Run the following commands in your PowerShell / terminal:
@@ -1141,8 +1227,13 @@ export function AdminPage() {
               <div className="rounded-lg bg-stone-950 p-3 font-mono text-xs text-stone-200 border border-stone-800 overflow-x-auto space-y-1">
                 <p className="text-stone-500"># In your terminal inside this folder:</p>
                 <p className="text-amber-300">git add .</p>
-                <p className="text-amber-300">git commit -m "Initial commit with CMS Admin, SEO crawler keywords, and Firebase"</p>
-                <p className="text-amber-300">git remote add origin https://github.com/YOUR_GITHUB_USERNAME/venu-consultants-web.git</p>
+                <p className="text-amber-300">
+                  git commit -m "Initial commit with CMS Admin, SEO crawler keywords, and Firebase"
+                </p>
+                <p className="text-amber-300">
+                  git remote add origin
+                  https://github.com/YOUR_GITHUB_USERNAME/venu-consultants-web.git
+                </p>
                 <p className="text-amber-300">git push -u origin main</p>
               </div>
             </div>
@@ -1153,10 +1244,13 @@ export function AdminPage() {
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xs">
                   2
                 </span>
-                <h3 className="font-display text-sm font-bold text-white">Import & Deploy to Vercel</h3>
+                <h3 className="font-display text-sm font-bold text-white">
+                  Import & Deploy to Vercel
+                </h3>
               </div>
               <p className="text-xs text-stone-300">
-                We have already added <code className="text-emerald-400">vercel.json</code> to your folder pre-configured with:
+                We have already added <code className="text-emerald-400">vercel.json</code> to your
+                folder pre-configured with:
               </p>
               <div className="rounded-lg bg-stone-950 p-3 font-mono text-xs text-stone-200 border border-stone-800 overflow-x-auto">
                 <pre className="text-emerald-300">{`{
@@ -1166,10 +1260,20 @@ export function AdminPage() {
 }`}</pre>
               </div>
               <p className="text-xs text-stone-300">
-                1. Go to <a href="https://vercel.com/new" target="_blank" rel="noreferrer" className="text-emerald-400 hover:underline">vercel.com/new</a> and select your new GitHub repo.
+                1. Go to{" "}
+                <a
+                  href="https://vercel.com/new"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-emerald-400 hover:underline"
+                >
+                  vercel.com/new
+                </a>{" "}
+                and select your new GitHub repo.
               </p>
               <p className="text-xs text-stone-300">
-                2. Click <strong>Deploy</strong>. Vercel will automatically build and publish your website with zero extra configuration required!
+                2. Click <strong>Deploy</strong>. Vercel will automatically build and publish your
+                website with zero extra configuration required!
               </p>
             </div>
           </div>
@@ -1181,7 +1285,10 @@ export function AdminPage() {
             <h2 className="text-lg font-bold text-white">Engineering Services & Sectors</h2>
             <div className="space-y-4">
               {content.services.map((srv, idx) => (
-                <div key={srv.slug} className="rounded-xl border border-stone-800 bg-stone-950 p-4 space-y-3">
+                <div
+                  key={srv.slug}
+                  className="rounded-xl border border-stone-800 bg-stone-950 p-4 space-y-3"
+                >
                   <div className="flex items-center justify-between">
                     <input
                       type="text"
@@ -1193,7 +1300,9 @@ export function AdminPage() {
                       }}
                       className="font-bold text-sm text-amber-400 bg-transparent border-b border-stone-800 focus:border-amber-400 outline-none pb-1"
                     />
-                    <span className="text-[11px] text-stone-500 font-mono">/services/{srv.slug}</span>
+                    <span className="text-[11px] text-stone-500 font-mono">
+                      /services/{srv.slug}
+                    </span>
                   </div>
                   <div>
                     <label className="block text-[11px] text-stone-400">Short Summary</label>
@@ -1209,7 +1318,9 @@ export function AdminPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] text-stone-400">Detailed Practice Overview</label>
+                    <label className="block text-[11px] text-stone-400">
+                      Detailed Practice Overview
+                    </label>
                     <textarea
                       rows={3}
                       value={srv.overview}
@@ -1272,52 +1383,72 @@ export function AdminPage() {
                   </h3>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label className="block text-xs font-medium text-stone-400">Hero Eyebrow</label>
+                      <label className="block text-xs font-medium text-stone-400">
+                        Hero Eyebrow
+                      </label>
                       <input
                         type="text"
                         value={content.home.hero.eyebrow}
                         onChange={(e) =>
                           updateContent({
-                            home: { ...content.home, hero: { ...content.home.hero, eyebrow: e.target.value } },
+                            home: {
+                              ...content.home,
+                              hero: { ...content.home.hero, eyebrow: e.target.value },
+                            },
                           })
                         }
                         className="mt-1 w-full rounded border border-stone-800 bg-stone-950 px-3 py-2 text-xs text-white"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-stone-400">Highlighted Word</label>
+                      <label className="block text-xs font-medium text-stone-400">
+                        Highlighted Word
+                      </label>
                       <input
                         type="text"
                         value={content.home.hero.highlightedWord}
                         onChange={(e) =>
                           updateContent({
-                            home: { ...content.home, hero: { ...content.home.hero, highlightedWord: e.target.value } },
+                            home: {
+                              ...content.home,
+                              hero: { ...content.home.hero, highlightedWord: e.target.value },
+                            },
                           })
                         }
                         className="mt-1 w-full rounded border border-stone-800 bg-stone-950 px-3 py-2 text-xs text-white"
                       />
                     </div>
                     <div className="sm:col-span-2">
-                      <label className="block text-xs font-medium text-stone-400">Hero Main Title (\n for newlines)</label>
+                      <label className="block text-xs font-medium text-stone-400">
+                        Hero Main Title (\n for newlines)
+                      </label>
                       <textarea
                         rows={2}
                         value={content.home.hero.title}
                         onChange={(e) =>
                           updateContent({
-                            home: { ...content.home, hero: { ...content.home.hero, title: e.target.value } },
+                            home: {
+                              ...content.home,
+                              hero: { ...content.home.hero, title: e.target.value },
+                            },
                           })
                         }
                         className="mt-1 w-full rounded border border-stone-800 bg-stone-950 px-3 py-2 text-xs text-white"
                       />
                     </div>
                     <div className="sm:col-span-2">
-                      <label className="block text-xs font-medium text-stone-400">Hero Subtitle</label>
+                      <label className="block text-xs font-medium text-stone-400">
+                        Hero Subtitle
+                      </label>
                       <textarea
                         rows={2}
                         value={content.home.hero.subtitle}
                         onChange={(e) =>
                           updateContent({
-                            home: { ...content.home, hero: { ...content.home.hero, subtitle: e.target.value } },
+                            home: {
+                              ...content.home,
+                              hero: { ...content.home.hero, subtitle: e.target.value },
+                            },
                           })
                         }
                         className="mt-1 w-full rounded border border-stone-800 bg-stone-950 px-3 py-2 text-xs text-white"
@@ -1330,7 +1461,9 @@ export function AdminPage() {
               {/* EDIT ABOUT OVERVIEW */}
               {selectedPage === "about-overview" && (
                 <div className="space-y-4">
-                  <h3 className="text-sm font-semibold text-amber-400 uppercase tracking-wider">About Overview</h3>
+                  <h3 className="text-sm font-semibold text-amber-400 uppercase tracking-wider">
+                    About Overview
+                  </h3>
                   <div>
                     <label className="block text-xs font-medium text-stone-400">Heading</label>
                     <input
@@ -1338,7 +1471,10 @@ export function AdminPage() {
                       value={content.about.overview.title}
                       onChange={(e) =>
                         updateContent({
-                          about: { ...content.about, overview: { ...content.about.overview, title: e.target.value } },
+                          about: {
+                            ...content.about,
+                            overview: { ...content.about.overview, title: e.target.value },
+                          },
                         })
                       }
                       className="mt-1 w-full rounded border border-stone-800 bg-stone-950 px-3 py-2 text-xs text-white"
@@ -1351,7 +1487,10 @@ export function AdminPage() {
                       value={content.about.overview.intro}
                       onChange={(e) =>
                         updateContent({
-                          about: { ...content.about, overview: { ...content.about.overview, intro: e.target.value } },
+                          about: {
+                            ...content.about,
+                            overview: { ...content.about.overview, intro: e.target.value },
+                          },
                         })
                       }
                       className="mt-1 w-full rounded border border-stone-800 bg-stone-950 px-3 py-2 text-xs text-white"
@@ -1364,12 +1503,24 @@ export function AdminPage() {
               {selectedPage === "about-team" && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-sm font-semibold text-amber-400 uppercase tracking-wider">Engineering Team</h3>
+                    <h3 className="text-sm font-semibold text-amber-400 uppercase tracking-wider">
+                      Engineering Team
+                    </h3>
                     <button
                       onClick={() => {
-                        const newM: Member = { name: "New Engineer", role: "Structural Engineer", bio: "Bio here" };
+                        const newM: Member = {
+                          name: "New Engineer",
+                          role: "Structural Engineer",
+                          bio: "Bio here",
+                        };
                         updateContent({
-                          about: { ...content.about, team: { ...content.about.team, members: [newM, ...content.about.team.members] } },
+                          about: {
+                            ...content.about,
+                            team: {
+                              ...content.about.team,
+                              members: [newM, ...content.about.team.members],
+                            },
+                          },
                         });
                       }}
                       className="inline-flex items-center gap-1 rounded bg-stone-800 px-2.5 py-1 text-xs text-amber-400"
@@ -1379,7 +1530,10 @@ export function AdminPage() {
                   </div>
                   <div className="grid gap-3 sm:grid-cols-2">
                     {content.about.team.members.map((m, idx) => (
-                      <div key={idx} className="rounded-lg border border-stone-800 bg-stone-950 p-3 space-y-2">
+                      <div
+                        key={idx}
+                        className="rounded-lg border border-stone-800 bg-stone-950 p-3 space-y-2"
+                      >
                         <div className="flex justify-between items-center">
                           <input
                             type="text"
@@ -1387,14 +1541,24 @@ export function AdminPage() {
                             onChange={(e) => {
                               const copy = [...content.about.team.members];
                               copy[idx].name = e.target.value;
-                              updateContent({ about: { ...content.about, team: { ...content.about.team, members: copy } } });
+                              updateContent({
+                                about: {
+                                  ...content.about,
+                                  team: { ...content.about.team, members: copy },
+                                },
+                              });
                             }}
                             className="font-bold text-xs text-amber-400 bg-transparent border-b border-stone-800"
                           />
                           <button
                             onClick={() => {
                               const copy = content.about.team.members.filter((_, i) => i !== idx);
-                              updateContent({ about: { ...content.about, team: { ...content.about.team, members: copy } } });
+                              updateContent({
+                                about: {
+                                  ...content.about,
+                                  team: { ...content.about.team, members: copy },
+                                },
+                              });
                             }}
                             className="text-stone-500 hover:text-rose-400"
                           >
@@ -1407,7 +1571,12 @@ export function AdminPage() {
                           onChange={(e) => {
                             const copy = [...content.about.team.members];
                             copy[idx].role = e.target.value;
-                            updateContent({ about: { ...content.about, team: { ...content.about.team, members: copy } } });
+                            updateContent({
+                              about: {
+                                ...content.about,
+                                team: { ...content.about.team, members: copy },
+                              },
+                            });
                           }}
                           className="w-full text-xs text-stone-300 bg-transparent border-b border-stone-800"
                           placeholder="Role"
@@ -1418,7 +1587,12 @@ export function AdminPage() {
                           onChange={(e) => {
                             const copy = [...content.about.team.members];
                             copy[idx].bio = e.target.value;
-                            updateContent({ about: { ...content.about, team: { ...content.about.team, members: copy } } });
+                            updateContent({
+                              about: {
+                                ...content.about,
+                                team: { ...content.about.team, members: copy },
+                              },
+                            });
                           }}
                           className="w-full text-xs text-stone-400 bg-transparent border border-stone-800 rounded p-1"
                           placeholder="Bio"
@@ -1433,7 +1607,9 @@ export function AdminPage() {
               {selectedPage === "clients" && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-sm font-semibold text-amber-400 uppercase tracking-wider">Clients</h3>
+                    <h3 className="text-sm font-semibold text-amber-400 uppercase tracking-wider">
+                      Clients
+                    </h3>
                     <button
                       onClick={() => {
                         const newC = { name: "New Client", sector: "Industrial" };
@@ -1446,7 +1622,10 @@ export function AdminPage() {
                   </div>
                   <div className="grid gap-2 sm:grid-cols-2">
                     {content.clients.map((c, idx) => (
-                      <div key={idx} className="flex gap-2 items-center rounded border border-stone-800 bg-stone-950 p-2">
+                      <div
+                        key={idx}
+                        className="flex gap-2 items-center rounded border border-stone-800 bg-stone-950 p-2"
+                      >
                         <input
                           type="text"
                           value={c.name}
@@ -1523,7 +1702,9 @@ export function AdminPage() {
                   >
                     <span>{p.label}</span>
                     {hasSEO && (
-                      <span className={`text-[10px] ${selectedSEOPage === p.id ? "text-stone-950" : "text-emerald-400"}`}>
+                      <span
+                        className={`text-[10px] ${selectedSEOPage === p.id ? "text-stone-950" : "text-emerald-400"}`}
+                      >
                         ✓ SEO
                       </span>
                     )}
@@ -1552,21 +1733,29 @@ export function AdminPage() {
                         Crawler Keywords & Metadata ({selectedSEOPage})
                       </h2>
                       <p className="mt-1 text-xs text-stone-400">
-                        Edit titles, descriptions, and crawler keywords for Google and search crawlers.
+                        Edit titles, descriptions, and crawler keywords for Google and search
+                        crawlers.
                       </p>
                     </div>
 
                     {/* Google SERP Preview */}
                     <div className="rounded-xl border border-stone-700 bg-stone-950 p-4 space-y-1">
                       <div className="flex items-center gap-2 text-[11px] text-stone-400">
-                        <span className="flex h-4 w-4 items-center justify-center rounded-full bg-stone-800 text-[9px] text-amber-400 font-bold">V</span>
-                        <span>https://venuconsultants.in{seoData.canonical || `/${selectedSEOPage === "home" ? "" : selectedSEOPage}`}</span>
+                        <span className="flex h-4 w-4 items-center justify-center rounded-full bg-stone-800 text-[9px] text-amber-400 font-bold">
+                          V
+                        </span>
+                        <span>
+                          https://venuconsultants.in
+                          {seoData.canonical ||
+                            `/${selectedSEOPage === "home" ? "" : selectedSEOPage}`}
+                        </span>
                       </div>
                       <h3 className="text-sm font-medium text-sky-400 hover:underline cursor-pointer line-clamp-1">
                         {seoData.title || "Venu Consultants — Engineering Consultancy"}
                       </h3>
                       <p className="text-xs text-stone-400 line-clamp-2 leading-relaxed">
-                        {seoData.description || "Engineering consultancy delivering architectural, structural, environmental and industrial engineering solutions."}
+                        {seoData.description ||
+                          "Engineering consultancy delivering architectural, structural, environmental and industrial engineering solutions."}
                       </p>
                     </div>
 
@@ -1574,7 +1763,9 @@ export function AdminPage() {
                       <div>
                         <div className="flex justify-between items-center text-xs">
                           <label className="font-medium text-stone-300">Meta Title</label>
-                          <span className="text-[11px] text-stone-500">{(seoData.title || "").length} / 60 chars</span>
+                          <span className="text-[11px] text-stone-500">
+                            {(seoData.title || "").length} / 60 chars
+                          </span>
                         </div>
                         <input
                           type="text"
@@ -1587,12 +1778,16 @@ export function AdminPage() {
                       <div>
                         <div className="flex justify-between items-center text-xs">
                           <label className="font-medium text-stone-300">Meta Description</label>
-                          <span className="text-[11px] text-stone-500">{(seoData.description || "").length} / 155 chars</span>
+                          <span className="text-[11px] text-stone-500">
+                            {(seoData.description || "").length} / 155 chars
+                          </span>
                         </div>
                         <textarea
                           rows={2}
                           value={seoData.description || ""}
-                          onChange={(e) => updateSEO(selectedSEOPage, { description: e.target.value })}
+                          onChange={(e) =>
+                            updateSEO(selectedSEOPage, { description: e.target.value })
+                          }
                           className="mt-1.5 w-full rounded border border-stone-800 bg-stone-950 px-3 py-2 text-xs text-white"
                         />
                       </div>
@@ -1600,10 +1795,12 @@ export function AdminPage() {
                       <div>
                         <div className="flex justify-between items-center text-xs">
                           <label className="font-medium text-amber-400">
-                            SEO Crawler Keywords <span className="text-stone-400">(Comma-separated)</span>
+                            SEO Crawler Keywords{" "}
+                            <span className="text-stone-400">(Comma-separated)</span>
                           </label>
                           <span className="text-[11px] text-stone-500">
-                            {(seoData.keywords || "").split(",").filter((k) => k.trim()).length} keywords added
+                            {(seoData.keywords || "").split(",").filter((k) => k.trim()).length}{" "}
+                            keywords added
                           </span>
                         </div>
                         <textarea
@@ -1634,7 +1831,9 @@ export function AdminPage() {
                 <input
                   type="text"
                   value={content.company.name}
-                  onChange={(e) => updateContent({ company: { ...content.company, name: e.target.value } })}
+                  onChange={(e) =>
+                    updateContent({ company: { ...content.company, name: e.target.value } })
+                  }
                   className="mt-1 w-full rounded border border-stone-800 bg-stone-950 px-3 py-2 text-white"
                 />
               </div>
@@ -1643,7 +1842,9 @@ export function AdminPage() {
                 <input
                   type="text"
                   value={content.company.tagline}
-                  onChange={(e) => updateContent({ company: { ...content.company, tagline: e.target.value } })}
+                  onChange={(e) =>
+                    updateContent({ company: { ...content.company, tagline: e.target.value } })
+                  }
                   className="mt-1 w-full rounded border border-stone-800 bg-stone-950 px-3 py-2 text-white"
                 />
               </div>
@@ -1652,7 +1853,9 @@ export function AdminPage() {
                 <input
                   type="text"
                   value={content.company.phone}
-                  onChange={(e) => updateContent({ company: { ...content.company, phone: e.target.value } })}
+                  onChange={(e) =>
+                    updateContent({ company: { ...content.company, phone: e.target.value } })
+                  }
                   className="mt-1 w-full rounded border border-stone-800 bg-stone-950 px-3 py-2 text-white"
                 />
               </div>
@@ -1661,7 +1864,9 @@ export function AdminPage() {
                 <input
                   type="text"
                   value={content.company.email}
-                  onChange={(e) => updateContent({ company: { ...content.company, email: e.target.value } })}
+                  onChange={(e) =>
+                    updateContent({ company: { ...content.company, email: e.target.value } })
+                  }
                   className="mt-1 w-full rounded border border-stone-800 bg-stone-950 px-3 py-2 text-white"
                 />
               </div>
@@ -1670,7 +1875,9 @@ export function AdminPage() {
                 <input
                   type="text"
                   value={content.company.address}
-                  onChange={(e) => updateContent({ company: { ...content.company, address: e.target.value } })}
+                  onChange={(e) =>
+                    updateContent({ company: { ...content.company, address: e.target.value } })
+                  }
                   className="mt-1 w-full rounded border border-stone-800 bg-stone-950 px-3 py-2 text-white"
                 />
               </div>

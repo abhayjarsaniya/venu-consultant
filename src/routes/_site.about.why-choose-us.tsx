@@ -7,7 +7,11 @@ export const Route = createFileRoute("/_site/about/why-choose-us")({
   head: () => ({
     meta: [
       { title: "Why Choose Venu Consultants" },
-      { name: "description", content: "Six reasons clients return, innovative engineering, cost-effective designs, fast turnaround, quality assurance, national presence and client satisfaction." },
+      {
+        name: "description",
+        content:
+          "Six reasons clients return, innovative engineering, cost-effective designs, fast turnaround, quality assurance, national presence and client satisfaction.",
+      },
       { property: "og:url", content: "/about/why-choose-us" },
     ],
     links: [{ rel: "canonical", href: "/about/why-choose-us" }],
@@ -32,7 +36,11 @@ function Why() {
         eyebrow={whyData.eyebrow}
         title={<>{whyData.title}</>}
         intro={whyData.intro}
-        breadcrumbs={[{ label: "Home", to: "/" }, { label: "About", to: "/about" }, { label: "Why Choose Us" }]}
+        breadcrumbs={[
+          { label: "Home", to: "/" },
+          { label: "About", to: "/about" },
+          { label: "Why Choose Us" },
+        ]}
       />
       <section className="border-b border-border">
         <div className="container-wide py-20">

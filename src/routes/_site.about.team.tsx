@@ -7,7 +7,10 @@ export const Route = createFileRoute("/_site/about/team")({
   head: () => ({
     meta: [
       { title: "Our Team, Venu Consultants" },
-      { name: "description", content: "Meet the engineering, architectural and operations team behind Venu Consultants." },
+      {
+        name: "description",
+        content: "Meet the engineering, architectural and operations team behind Venu Consultants.",
+      },
       { property: "og:url", content: "/about/team" },
     ],
     links: [{ rel: "canonical", href: "/about/team" }],
@@ -29,9 +32,18 @@ function Team() {
       />
       <PageHero
         eyebrow="Our Team"
-        title={<>Multi-disciplinary engineering, <span className="italic text-muted-foreground">one bench.</span></>}
+        title={
+          <>
+            Multi-disciplinary engineering,{" "}
+            <span className="italic text-muted-foreground">one bench.</span>
+          </>
+        }
         intro="Architects, structural, mechanical, electrical and hydraulic engineers, draftsmen and accountants working as a single integrated team."
-        breadcrumbs={[{ label: "Home", to: "/" }, { label: "About", to: "/about" }, { label: "Team" }]}
+        breadcrumbs={[
+          { label: "Home", to: "/" },
+          { label: "About", to: "/about" },
+          { label: "Team" },
+        ]}
       />
       <section className="border-b border-border">
         <div className="container-wide py-20">
@@ -52,7 +64,12 @@ function Team() {
           </div>
         </div>
       </section>
-      <CTASection eyebrow="Careers" title="Want to join the bench?" body="We are always interested in talented engineers, architects and draftsmen." ctaLabel="See Careers" />
+      <CTASection
+        eyebrow="Careers"
+        title="Want to join the bench?"
+        body="We are always interested in talented engineers, architects and draftsmen."
+        ctaLabel="See Careers"
+      />
     </>
   );
 }

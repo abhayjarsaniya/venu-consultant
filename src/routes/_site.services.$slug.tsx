@@ -22,30 +22,37 @@ export const Route = createFileRoute("/_site/services/$slug")({
         { property: "og:url", content: `/services/${s.slug}` },
       ],
       links: [{ rel: "canonical", href: `/services/${s.slug}` }],
-      scripts: [{
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: s.faqs.map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.a },
-          })),
-        }),
-      }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: s.faqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          }),
+        },
+      ],
     };
   },
   component: ServiceDetail,
 });
 
 function ServiceDetail() {
-  const { service: initialService, slug } = Route.useLoaderData() as { service: Service; slug: string };
+  const { service: initialService, slug } = Route.useLoaderData() as {
+    service: Service;
+    slug: string;
+  };
   const { content } = useSiteContent();
 
   // Pick up updated service from content store if modified by admin
   const s = content.services.find((x) => x.slug === slug) || initialService;
-  const related = content.services.filter((x) => x.slug !== s.slug && x.category === s.category).slice(0, 3);
+  const related = content.services
+    .filter((x) => x.slug !== s.slug && x.category === s.category)
+    .slice(0, 3);
 
   return (
     <>
@@ -77,7 +84,9 @@ function ServiceDetail() {
             <p className="eyebrow mt-16">Capabilities</p>
             <ul className="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
               {s.capabilities.map((c) => (
-                <li key={c} className="rule-gold">{c}</li>
+                <li key={c} className="rule-gold">
+                  {c}
+                </li>
               ))}
             </ul>
           </div>
@@ -86,7 +95,9 @@ function ServiceDetail() {
               <p className="eyebrow">What We Deliver</p>
               <ul className="mt-5 space-y-3 text-sm">
                 {s.deliverables.map((d) => (
-                  <li key={d} className="flex items-start gap-3"><span className="mt-2 h-1 w-3 shrink-0 bg-gold" /> {d}</li>
+                  <li key={d} className="flex items-start gap-3">
+                    <span className="mt-2 h-1 w-3 shrink-0 bg-gold" /> {d}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -94,7 +105,9 @@ function ServiceDetail() {
               <p className="eyebrow">Industries Served</p>
               <ul className="mt-5 flex flex-wrap gap-2">
                 {s.industries.map((i) => (
-                  <li key={i} className="border border-border bg-background px-3 py-1.5 text-xs">{i}</li>
+                  <li key={i} className="border border-border bg-background px-3 py-1.5 text-xs">
+                    {i}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -123,7 +136,9 @@ function ServiceDetail() {
             <p className="eyebrow">Benefits</p>
             <ul className="mt-6 space-y-4 text-lg">
               {s.benefits.map((b) => (
-                <li key={b} className="rule-gold">{b}</li>
+                <li key={b} className="rule-gold">
+                  {b}
+                </li>
               ))}
             </ul>
           </div>
@@ -150,7 +165,12 @@ function ServiceDetail() {
             <p className="eyebrow">Related Services</p>
             <div className="mt-8 grid gap-px bg-border md:grid-cols-3">
               {related.map((r) => (
-                <Link key={r.slug} to="/services/$slug" params={{ slug: r.slug }} className="bg-background p-6 transition hover:bg-foreground hover:text-background">
+                <Link
+                  key={r.slug}
+                  to="/services/$slug"
+                  params={{ slug: r.slug }}
+                  className="bg-background p-6 transition hover:bg-foreground hover:text-background"
+                >
                   <h3 className="font-display text-xl">{r.title}</h3>
                   <p className="mt-3 text-sm text-muted-foreground">{r.summary}</p>
                 </Link>
@@ -160,7 +180,10 @@ function ServiceDetail() {
         </section>
       )}
 
-      <CTASection title={`Ready to start your ${s.title.toLowerCase()} project?`} ctaLabel="Discuss Your Project" />
+      <CTASection
+        title={`Ready to start your ${s.title.toLowerCase()} project?`}
+        ctaLabel="Discuss Your Project"
+      />
     </>
   );
 }

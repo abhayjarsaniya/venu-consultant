@@ -7,7 +7,11 @@ export const Route = createFileRoute("/_site/about/leadership")({
   head: () => ({
     meta: [
       { title: "Leadership, Mr. Keyur Ladani, Managing Director" },
-      { name: "description", content: "Meet Mr. Keyur Ladani, Managing Director and Principal Structural Engineer of Venu Consultants, with 18+ years of practice." },
+      {
+        name: "description",
+        content:
+          "Meet Mr. Keyur Ladani, Managing Director and Principal Structural Engineer of Venu Consultants, with 18+ years of practice.",
+      },
       { property: "og:url", content: "/about/leadership" },
     ],
     links: [{ rel: "canonical", href: "/about/leadership" }],
@@ -40,7 +44,11 @@ function Leadership() {
         eyebrow="Leadership"
         title={leader.name}
         intro={`${leader.role} · ${leader.qualification || ""} · ${leader.experience || ""} of practice`}
-        breadcrumbs={[{ label: "Home", to: "/" }, { label: "About", to: "/about" }, { label: "Leadership" }]}
+        breadcrumbs={[
+          { label: "Home", to: "/" },
+          { label: "About", to: "/about" },
+          { label: "Leadership" },
+        ]}
       />
       <section className="border-b border-border">
         <div className="container-wide grid gap-16 py-20 lg:grid-cols-12 lg:py-28">
@@ -52,7 +60,9 @@ function Leadership() {
               <p className="eyebrow">Areas of Expertise</p>
               <ul className="mt-5 space-y-3">
                 {expertise.map((e) => (
-                  <li key={e} className="rule-gold text-foreground">{e}</li>
+                  <li key={e} className="rule-gold text-foreground">
+                    {e}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -67,7 +77,10 @@ function Leadership() {
           </aside>
         </div>
       </section>
-      <CTASection eyebrow="Work With Our Principal" title="Discuss your project directly with our engineering leadership." />
+      <CTASection
+        eyebrow="Work With Our Principal"
+        title="Discuss your project directly with our engineering leadership."
+      />
     </>
   );
 }

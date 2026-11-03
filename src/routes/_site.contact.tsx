@@ -9,7 +9,11 @@ export const Route = createFileRoute("/_site/contact")({
   head: () => ({
     meta: [
       { title: "Contact, Venu Consultants Pvt. Ltd." },
-      { name: "description", content: "Start your next engineering project with confidence. Contact Venu Consultants, Ahmedabad." },
+      {
+        name: "description",
+        content:
+          "Start your next engineering project with confidence. Contact Venu Consultants, Ahmedabad.",
+      },
       { property: "og:url", content: "/contact" },
     ],
     links: [{ rel: "canonical", href: "/contact" }],
@@ -54,7 +58,10 @@ function Contact() {
               {submitted ? (
                 <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-8 text-center text-emerald-800">
                   <p className="font-display text-2xl font-bold">Enquiry Sent Successfully!</p>
-                  <p className="mt-2 text-sm text-muted-foreground">Thank you for reaching out. Our engineering team typically responds within one business day.</p>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Thank you for reaching out. Our engineering team typically responds within one
+                    business day.
+                  </p>
                 </div>
               ) : (
                 <form
@@ -72,14 +79,26 @@ function Contact() {
                     <label className="eyebrow block">Service Required</label>
                     <select className="mt-3 w-full border-b border-border bg-transparent py-3 outline-none focus:border-gold text-sm">
                       <option value="">Select a service…</option>
-                      {services.map((s) => <option key={s.slug} value={s.slug}>{s.title}</option>)}
+                      {services.map((s) => (
+                        <option key={s.slug} value={s.slug}>
+                          {s.title}
+                        </option>
+                      ))}
                     </select>
                   </div>
                   <div className="sm:col-span-2">
                     <label className="eyebrow block">Project Brief</label>
-                    <textarea rows={6} className="mt-3 w-full border border-border bg-background p-4 outline-none focus:border-gold text-sm" placeholder="Site location, scope, programme and any technical constraints." required />
+                    <textarea
+                      rows={6}
+                      className="mt-3 w-full border border-border bg-background p-4 outline-none focus:border-gold text-sm"
+                      placeholder="Site location, scope, programme and any technical constraints."
+                      required
+                    />
                   </div>
-                  <button type="submit" className="justify-self-start bg-foreground px-7 py-4 text-sm text-background font-semibold hover:bg-foreground/90 transition cursor-pointer sm:col-span-2">
+                  <button
+                    type="submit"
+                    className="justify-self-start bg-foreground px-7 py-4 text-sm text-background font-semibold hover:bg-foreground/90 transition cursor-pointer sm:col-span-2"
+                  >
                     Send Enquiry
                   </button>
                 </form>
@@ -96,7 +115,11 @@ function Contact() {
               </div>
               <div>
                 <p className="eyebrow">Email</p>
-                <p className="mt-4"><a href={`mailto:${company.email}`} className="link-underline">{company.email}</a></p>
+                <p className="mt-4">
+                  <a href={`mailto:${company.email}`} className="link-underline">
+                    {company.email}
+                  </a>
+                </p>
               </div>
               <div>
                 <p className="eyebrow">Phone</p>
@@ -126,11 +149,26 @@ function Contact() {
   );
 }
 
-function Field({ label, name, type = "text", required }: { label: string; name: string; type?: string; required?: boolean }) {
+function Field({
+  label,
+  name,
+  type = "text",
+  required,
+}: {
+  label: string;
+  name: string;
+  type?: string;
+  required?: boolean;
+}) {
   return (
     <div>
       <label className="eyebrow block">{label}</label>
-      <input name={name} type={type} required={required} className="mt-3 w-full border-b border-border bg-transparent py-3 outline-none focus:border-gold text-sm" />
+      <input
+        name={name}
+        type={type}
+        required={required}
+        className="mt-3 w-full border-b border-border bg-transparent py-3 outline-none focus:border-gold text-sm"
+      />
     </div>
   );
 }

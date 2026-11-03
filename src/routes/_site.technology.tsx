@@ -6,7 +6,11 @@ export const Route = createFileRoute("/_site/technology")({
   head: () => ({
     meta: [
       { title: "Technology, Software & Standards | Venu Consultants" },
-      { name: "description", content: "Licensed engineering software, drafting standards and BIM-ready approach behind every Venu Consultants deliverable." },
+      {
+        name: "description",
+        content:
+          "Licensed engineering software, drafting standards and BIM-ready approach behind every Venu Consultants deliverable.",
+      },
       { property: "og:url", content: "/technology" },
     ],
     links: [{ rel: "canonical", href: "/technology" }],
@@ -24,10 +28,22 @@ const software = [
 ];
 
 const pillars = [
-  { t: "Structural Analysis", d: "Multi-package modelling to cross-validate critical results, outputs are engineered, never blindly accepted." },
-  { t: "Drafting Standards", d: "Controlled CAD templates, layers, line types and revision protocol applied uniformly across every project." },
-  { t: "BIM-Ready Approach", d: "Coordinated CAD that can be lifted into Revit for projects requiring multi-discipline BIM coordination." },
-  { t: "Quality Control", d: "Independent cross-checking on every issued drawing, readability, ambiguity and error logged and resolved." },
+  {
+    t: "Structural Analysis",
+    d: "Multi-package modelling to cross-validate critical results, outputs are engineered, never blindly accepted.",
+  },
+  {
+    t: "Drafting Standards",
+    d: "Controlled CAD templates, layers, line types and revision protocol applied uniformly across every project.",
+  },
+  {
+    t: "BIM-Ready Approach",
+    d: "Coordinated CAD that can be lifted into Revit for projects requiring multi-discipline BIM coordination.",
+  },
+  {
+    t: "Quality Control",
+    d: "Independent cross-checking on every issued drawing, readability, ambiguity and error logged and resolved.",
+  },
 ];
 
 function Tech() {
@@ -41,7 +57,12 @@ function Tech() {
       />
       <PageHero
         eyebrow="Technology"
-        title={<>Software, standards & <span className="italic text-muted-foreground">cross-checks.</span></>}
+        title={
+          <>
+            Software, standards &{" "}
+            <span className="italic text-muted-foreground">cross-checks.</span>
+          </>
+        }
         intro="We invest in licensed engineering software and a disciplined drafting practice, the combination is how we deliver fast, accurate, code-compliant deliverables."
         breadcrumbs={[{ label: "Home", to: "/" }, { label: "Technology" }]}
       />

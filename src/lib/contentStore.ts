@@ -87,7 +87,11 @@ export function resetContentToDefault(): DefaultSiteContent {
 export async function syncFromFirestore(): Promise<{ success: boolean; message: string }> {
   const db = getFirebaseDb();
   if (!db) {
-    return { success: false, message: "Firebase is not configured yet. Add your Firebase credentials in the Cloud Sync tab." };
+    return {
+      success: false,
+      message:
+        "Firebase is not configured yet. Add your Firebase credentials in the Cloud Sync tab.",
+    };
   }
   try {
     const snap = await getDoc(doc(db, "site_settings", "content"));
@@ -98,7 +102,11 @@ export async function syncFromFirestore(): Promise<{ success: boolean; message: 
     } else {
       // First time, upload current content
       await setDoc(doc(db, "site_settings", "content"), currentContent);
-      return { success: true, message: "No remote document found. Successfully seeded your current content to Firebase Cloud!" };
+      return {
+        success: true,
+        message:
+          "No remote document found. Successfully seeded your current content to Firebase Cloud!",
+      };
     }
   } catch (err: any) {
     console.error("Firebase sync error:", err);
@@ -109,11 +117,18 @@ export async function syncFromFirestore(): Promise<{ success: boolean; message: 
 export async function syncToFirestore(): Promise<{ success: boolean; message: string }> {
   const db = getFirebaseDb();
   if (!db) {
-    return { success: false, message: "Firebase is not configured yet. Add your Firebase credentials in the Cloud Sync tab." };
+    return {
+      success: false,
+      message:
+        "Firebase is not configured yet. Add your Firebase credentials in the Cloud Sync tab.",
+    };
   }
   try {
     await setDoc(doc(db, "site_settings", "content"), currentContent);
-    return { success: true, message: "Content successfully published and synced to Firebase Cloud!" };
+    return {
+      success: true,
+      message: "Content successfully published and synced to Firebase Cloud!",
+    };
   } catch (err: any) {
     console.error("Firebase push error:", err);
     return { success: false, message: `Firebase Cloud error: ${err?.message || String(err)}` };
